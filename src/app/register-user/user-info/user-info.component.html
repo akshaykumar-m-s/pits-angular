@@ -1,0 +1,34 @@
+<div class="container p-20">
+    <mat-card>
+        <div class="main-container">
+            <div class="left-container">
+                <label class="hoverable" for="fileInput">
+                    <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+                    <div class="hover-text">
+                        Choose file
+                    </div>
+                    <div class="background"></div>
+                </label>
+                <br />
+                <input id="fileInput" type='file' (change)="onSelectFile($event)">
+                <button mat-raised-button class="ml-40" color="warn" *ngIf="url" (click)="delete()">Delete
+                    Photo</button>
+                <br>
+                <button mat-raised-button class="ml-45 mt-15" color="primary" [routerLink]="[ '/register-page']">Edit
+                    Profile</button>
+            </div>
+            <mat-divider [vertical]="true"></mat-divider>
+            <div class="right-container">
+                <p>
+                    I am <span class="span-color"> {{ userInfo.firstName }} {{ userInfo.lastName }} </span> and
+                    I am <span class="span-color"> {{ userInfo.age }} years old </span> and you can send your email to
+                    <span class="span-color"> {{ userInfo.email }}</span>, I hails from
+                    <span class="span-color"> {{ userInfo.state }},{{ userInfo.country }}</span>. My interests are
+                    <span class="span-color"> {{ interests }}</span>. You can reach me on phone:
+                    <span class="span-color"> {{ userInfo.tel }}</span>.
+                    <span *ngIf="!!userInfo.subscription"> Please send me your newsletters.</span>
+                </p>
+            </div>
+        </div>
+    </mat-card>
+</div>
