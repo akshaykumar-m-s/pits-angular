@@ -15,6 +15,7 @@
                 <button mat-raised-button class="ml-40" color="warn" *ngIf="url" (click)="delete()">Delete
                     Photo</button>
             </div>
+            <mat-divider [vertical]="true"></mat-divider>
             <div class="right-container">
                 <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="form-group row">
