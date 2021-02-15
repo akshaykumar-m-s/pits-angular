@@ -6,6 +6,11 @@ import { UserInfoComponent } from "./user-info/user-info.component";
 const routes: Routes = [
   {
     path: "",
+    pathMatch: "full",
+    redirectTo: "form",
+  },
+  {
+    path: "form",
     component: RegistrationFormComponent,
   },
   {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserInfo } from "../registration-form/registration-form.component";
+import { UserInfo } from "src/app/model";
 
 @Component({
   selector: "app-user-info",
@@ -12,6 +12,9 @@ export class UserInfoComponent implements OnInit {
   interests = "";
   constructor() {}
 
+  /**
+   * On Init
+   */
   ngOnInit() {
     this.userInfo = JSON.parse(localStorage.getItem("form-data"));
     if (!!this.userInfo && !!this.userInfo.photo) {
@@ -26,6 +29,10 @@ export class UserInfoComponent implements OnInit {
     this.interests = dataArray.toString();
   }
 
+  /**
+   * Triggers on Choose file click
+   * @param event: File Change Event
+   */
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -37,9 +44,5 @@ export class UserInfoComponent implements OnInit {
         this.url = event.target.result;
       };
     }
-  }
-
-  delete() {
-    this.url = null;
   }
 }

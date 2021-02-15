@@ -11,7 +11,7 @@
                 </label>
                 <br />
                 <input id="fileInput" type='file' (change)="onSelectFile($event)">
-                <button mat-raised-button class="ml-40" color="warn" *ngIf="url" (click)="delete()">Delete
+                <button mat-raised-button class="ml-40" color="warn" *ngIf="url" (click)="url = ''">Delete
                     Photo</button>
                 <br>
                 <button mat-raised-button class="ml-45 mt-15" color="primary" [routerLink]="[ '/register-page']">Edit

@@ -4,25 +4,7 @@ import { MatChipInputEvent } from "@angular/material/chips";
 import { MatSelectChange } from "@angular/material/select";
 import { Router } from "@angular/router";
 import countryList from "src/app/countrylist.json";
-
-export interface Interest {
-  name: string;
-}
-export class UserInfo {
-  photo = "";
-  firstName = "";
-  lastName = "";
-  age = 0;
-  email = "";
-  tel = "";
-  state = "";
-  country = "";
-  address = "";
-  address1 = "";
-  address2 = "";
-  interests: Interest[];
-  subscription = false;
-}
+import { Interest, UserInfo } from "src/app/model";
 
 @Component({
   selector: "app-registration-form",
@@ -37,20 +19,21 @@ export class RegistrationFormComponent implements OnInit {
     { name: "Hockey" },
   ];
   readonly separatorKeysCodes: number[] = [13, 188];
-
   checked = false;
   value = 16;
-
   register: UserInfo;
   registerForm: FormGroup;
   hasFormErrors = false;
-
   countryJson = countryList;
   states: string[];
+
   constructor(private fb: FormBuilder, private router: Router) {
     this.register = new UserInfo();
   }
 
+  /**
+   * On Init
+   */
   ngOnInit() {
     const formData = JSON.parse(localStorage.getItem("form-data"));
     this.register = !!formData ? formData : new UserInfo();
@@ -70,6 +53,9 @@ export class RegistrationFormComponent implements OnInit {
     this.initForm();
   }
 
+  /**
+   * Form Initializer
+   */
   initForm() {
     this.registerForm = this.fb.group({
       photo: [""],
@@ -97,6 +83,10 @@ export class RegistrationFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Triggers on Choose file click
+   * @param event: File Change Event
+   */
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -111,10 +101,10 @@ export class RegistrationFormComponent implements OnInit {
     }
   }
 
-  delete() {
-    this.url = null;
-  }
-
+  /**
+   * To add the interest to Array
+   * @param event: MatChipInputEvent
+   */
   add(event: MatChipInputEvent) {
     const input = event.input;
     const value = event.value;
@@ -130,6 +120,10 @@ export class RegistrationFormComponent implements OnInit {
     }
   }
 
+  /**
+   * To remove the interest from Array
+   * @param value:  Interest Model
+   */
   remove(value: Interest) {
     const index = this.interestsArray.indexOf(value);
 
@@ -138,16 +132,10 @@ export class RegistrationFormComponent implements OnInit {
     }
   }
 
-  addressChange(event: MatSelectChange) {
-    if (!!event.value && event.value === "home") {
-      console.log("If");
-    } else if (event.value === "company") {
-      console.log("Else if");
-    } else {
-      console.log("Else");
-    }
-  }
-
+  /**
+   * Selection Change of Country
+   * @param event: MatSelectChange
+   */
   countryChange(event: MatSelectChange) {
     const x = this.countryJson.find(
       (i) => i.country.toLowerCase() === event.value.toLowerCase()
@@ -172,8 +160,10 @@ export class RegistrationFormComponent implements OnInit {
     return result;
   }
 
+  /**
+   * On Submit =>  triggers save form if valid
+   */
   onSubmit() {
-    console.log("Form Click", this.registerForm.value);
     this.hasFormErrors = false;
     const controls = this.registerForm.controls;
 
@@ -186,8 +176,7 @@ export class RegistrationFormComponent implements OnInit {
       this.hasFormErrors = true;
       return;
     }
-    console.log("Form", this.registerForm.value);
     localStorage.setItem("form-data", JSON.stringify(this.registerForm.value));
-    this.router.navigate(["/register-page/user"]);
+    this.router.navigate(["/registration/user"]);
   }
 }

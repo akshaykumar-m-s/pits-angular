@@ -6,13 +6,12 @@
                     <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
                     <div class="hover-text">
                         Choose file
-                        <!-- <h4 class="success-message" *ngIf="url"> Uploaded Successfully </h4> -->
                     </div>
                     <div class="background"></div>
                 </label>
                 <br />
                 <input id="fileInput" type='file' (change)="onSelectFile($event)">
-                <button mat-raised-button class="ml-40" color="warn" *ngIf="url" (click)="delete()">Delete
+                <button mat-raised-button class="ml-45" color="warn" *ngIf="url" (click)="url = ''">Delete
                     Photo</button>
             </div>
             <mat-divider [vertical]="true"></mat-divider>
@@ -23,7 +22,7 @@
                             <mat-form-field appearance="outline" class="mr-10">
                                 <mat-label>First Name</mat-label>
                                 <input matInput class="form-control" placeholder="First Name"
-                                    formControlName="firstName">
+                                    formControlName="firstName" [(ngModel)]="register.firstName">
                                 <mat-error *ngIf="isControlHasError('firstName', 'required')">
                                     <strong>First Name is required</strong>
                                 </mat-error>
@@ -33,7 +32,8 @@
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Last Name</mat-label>
-                                <input matInput class="form-control" placeholder="Last Name" formControlName="lastName">
+                                <input matInput class="form-control" placeholder="Last Name" formControlName="lastName"
+                                    [(ngModel)]="register.lastName">
                                 <mat-error *ngIf="isControlHasError('lastName', 'required')">
                                     <strong>Last Name is required</strong>
                                 </mat-error>
@@ -42,13 +42,14 @@
                         <div class="col-lg-4">
                             <mat-label>Age</mat-label>
                             <mat-slider class="w-100" max="100" min="13" step="1" thumbLabel="true"
-                                formControlName="age">
+                                formControlName="age" [(ngModel)]="register.age">
                             </mat-slider>
                         </div>
                         <div class="col-lg-4">
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Email</mat-label>
-                                <input matInput class="form-control" placeholder="Email" formControlName="email">
+                                <input matInput class="form-control" placeholder="Email" formControlName="email"
+                                    [(ngModel)]="register.email">
                                 <mat-error *ngIf="isControlHasError('email', 'required')">
                                     <strong>Email is required</strong>
                                 </mat-error>
@@ -60,7 +61,8 @@
                         <div class="col-lg-4">
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Tel</mat-label>
-                                <input matInput class="form-control" placeholder="Tel" formControlName="tel">
+                                <input matInput class="form-control" placeholder="Tel" formControlName="tel"
+                                    [(ngModel)]="register.tel">
                                 <mat-error *ngIf="isControlHasError('tel', 'required')">
                                     <strong>Tel is required</strong>
                                 </mat-error>
@@ -70,7 +72,7 @@
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Country</mat-label>
                                 <mat-select #country class="form-control" formControlName="country"
-                                    (selectionChange)="countryChange($event)">
+                                    [(ngModel)]="register.country" (selectionChange)="countryChange($event)">
                                     <mat-option value="">select</mat-option>
                                     <mat-option *ngFor="let key of countryJson" [value]="key.country">{{ key.country }}
                                     </mat-option>
@@ -83,7 +85,7 @@
                         <div class="col-lg-4">
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>State</mat-label>
-                                <mat-select class="form-control" formControlName="state">
+                                <mat-select class="form-control" formControlName="state" [(ngModel)]="register.state">
                                     <mat-option value="">select</mat-option>
                                     <mat-option *ngFor="let key of states" [value]="key">{{ key }}
                                     </mat-option>
@@ -97,7 +99,7 @@
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Address</mat-label>
                                 <mat-select #address class="form-control" formControlName="address"
-                                    (selectionChange)="addressChange($event)">
+                                    [(ngModel)]="register.address">
                                     <mat-option value="">Choose Address</mat-option>
                                     <mat-option value="home">Home</mat-option>
                                     <mat-option value="company">Company</mat-option>
@@ -112,7 +114,7 @@
                                 <mat-label>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1</mat-label>
                                 <input matInput class="form-control"
                                     placeholder="{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1"
-                                    formControlName="address1">
+                                    formControlName="address1" [(ngModel)]="register.address1">
                                 <mat-error *ngIf="isControlHasError('address1', 'required')">
                                     <strong>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1 is
                                         required</strong>
@@ -124,7 +126,7 @@
                                 <mat-label>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 2</mat-label>
                                 <input matInput class="form-control "
                                     placeholder="{{ address.value === 'home' ? 'Home' : 'Company' }} Address 2"
-                                    formControlName="address2">
+                                    formControlName="address2" [(ngModel)]="register.address2">
                             </mat-form-field>
                         </div>
                         <div class="col-lg-4">
@@ -143,7 +145,7 @@
                             </mat-form-field>
                         </div>
                         <div class="col-lg-4">
-                            <mat-checkbox formControlName="subscription">
+                            <mat-checkbox formControlName="subscription" [(ngModel)]="register.subscription">
                                 Subscribe to the news letter
                             </mat-checkbox>
                         </div>

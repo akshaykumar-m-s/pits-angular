@@ -4,7 +4,7 @@ import { RegisterButtonComponent } from "./register-button.component";
 
 const routes: Routes = [
   {
-    path: "register",
+    path: "",
     component: RegisterButtonComponent,
   },
 ];
