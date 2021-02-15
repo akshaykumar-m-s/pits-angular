@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserInfo } from "src/app/model";
+import { UserInfo } from "../../../app/model";
 
 @Component({
   selector: "app-user-info",

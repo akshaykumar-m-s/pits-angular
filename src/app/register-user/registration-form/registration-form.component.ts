@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { MatSelectChange } from "@angular/material/select";
 import { Router } from "@angular/router";
-import countryList from "src/app/countrylist.json";
-import { Interest, UserInfo } from "src/app/model";
+import countryList from "../../../app/countrylist.json";
+import { Interest, UserInfo } from "../../../app/model";
 
 @Component({
   selector: "app-registration-form",
