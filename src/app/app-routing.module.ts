@@ -10,14 +10,14 @@ const routes: Routes = [
   {
     path: "register",
     loadChildren: () =>
-      import("src/app/register-button/register-button.module").then(
+      import("../app/register-button/register-button.module").then(
         (m) => m.RegisterButtonModule
       ),
   },
   {
     path: "registration",
     loadChildren: () =>
-      import("src/app/register-user/register-user.module").then(
+      import("../app/register-user/register-user.module").then(
         (m) => m.RegisterUserModule
       ),
   },
