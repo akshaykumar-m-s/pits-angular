@@ -1,161 +1,161 @@
-<div class="container p-20">
-    <mat-card>
-        <div class="main-container">
-            <div class="left-container">
-                <label class="hoverable" for="fileInput">
+<div class="container p-20 d-flex">
+	<mat-card>
+		<div class="main-container">
+			<div class="left-container">
+				<label class="hoverable" for="fileInput">
                     <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
                     <div class="hover-text">
                         Choose file
                     </div>
                     <div class="background"></div>
                 </label>
-                <br />
-                <input id="fileInput" type='file' (change)="onSelectFile($event)">
-                <button mat-raised-button class="ml-45" color="warn" *ngIf="url" (click)="url = ''">Delete
+				<br />
+				<input id="fileInput" type='file' (change)="onSelectFile($event)">
+				<button mat-raised-button class="ml-45" color="warn" *ngIf="url" (click)="url = ''">Delete
                     Photo</button>
-            </div>
-            <mat-divider [vertical]="true"></mat-divider>
-            <div class="right-container">
-                <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group row">
-                        <div class="col-lg-4 d-flex justify-content-btweeen">
-                            <mat-form-field appearance="outline" class="mr-10">
-                                <mat-label>First Name</mat-label>
-                                <input matInput class="form-control" placeholder="First Name"
+			</div>
+			<mat-divider [vertical]="true"></mat-divider>
+			<div class="right-container">
+				<form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+					<div class="form-group row">
+						<div class="col-lg-4 d-flex justify-content-btweeen">
+							<mat-form-field appearance="outline" class="mr-10">
+								<mat-label>First Name</mat-label>
+								<input matInput class="form-control" placeholder="First Name"
                                     formControlName="firstName" [(ngModel)]="register.firstName">
-                                <mat-error *ngIf="isControlHasError('firstName', 'required')">
-                                    <strong>First Name is required</strong>
-                                </mat-error>
-                                <mat-error *ngIf="isControlHasError('firstName','pattern')">
-                                    <strong>First Name is invalid</strong>
-                                </mat-error>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Last Name</mat-label>
-                                <input matInput class="form-control" placeholder="Last Name" formControlName="lastName"
+								<mat-error *ngIf="isControlHasError('firstName', 'required')">
+									<strong>First Name is required</strong>
+								</mat-error>
+								<mat-error *ngIf="isControlHasError('firstName','pattern')">
+									<strong>First Name is invalid</strong>
+								</mat-error>
+							</mat-form-field>
+							<mat-form-field appearance="outline">
+								<mat-label>Last Name</mat-label>
+								<input matInput class="form-control" placeholder="Last Name" formControlName="lastName"
                                     [(ngModel)]="register.lastName">
-                                <mat-error *ngIf="isControlHasError('lastName', 'required')">
-                                    <strong>Last Name is required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-label>Age</mat-label>
-                            <mat-slider class="w-100" max="100" min="13" step="1" thumbLabel="true"
-                                formControlName="age" [(ngModel)]="register.age">
-                            </mat-slider>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Email</mat-label>
-                                <input matInput class="form-control" placeholder="Email" formControlName="email"
+								<mat-error *ngIf="isControlHasError('lastName', 'required')">
+									<strong>Last Name is required</strong>
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4">
+							<mat-label>Age</mat-label>
+							<mat-slider class="w-100" max="100" min="13" step="1" thumbLabel="true"
+								formControlName="age" [(ngModel)]="register.age">
+							</mat-slider>
+						</div>
+						<div class="col-lg-4">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Email</mat-label>
+								<input matInput class="form-control" placeholder="Email" formControlName="email"
                                     [(ngModel)]="register.email">
-                                <mat-error *ngIf="isControlHasError('email', 'required')">
-                                    <strong>Email is required</strong>
-                                </mat-error>
-                                <mat-error *ngIf="isControlHasError('email','email')">
-                                    <strong>Email is invalid</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Tel</mat-label>
-                                <input matInput class="form-control" placeholder="Tel" formControlName="tel"
+								<mat-error *ngIf="isControlHasError('email', 'required')">
+									<strong>Email is required</strong>
+								</mat-error>
+								<mat-error *ngIf="isControlHasError('email','email')">
+									<strong>Email is invalid</strong>
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Tel</mat-label>
+								<input matInput class="form-control" placeholder="Tel" formControlName="tel"
                                     [(ngModel)]="register.tel">
-                                <mat-error *ngIf="isControlHasError('tel', 'required')">
-                                    <strong>Tel is required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Country</mat-label>
-                                <mat-select #country class="form-control" formControlName="country"
-                                    [(ngModel)]="register.country" (selectionChange)="countryChange($event)">
-                                    <mat-option value="">select</mat-option>
-                                    <mat-option *ngFor="let key of countryJson" [value]="key.country">{{ key.country }}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="isControlHasError('country', 'required')">
-                                    <strong>Country is required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>State</mat-label>
-                                <mat-select class="form-control" formControlName="state" [(ngModel)]="register.state">
-                                    <mat-option value="">select</mat-option>
-                                    <mat-option *ngFor="let key of states" [value]="key">{{ key }}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="isControlHasError('state', 'required')">
-                                    <strong>State is required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Address</mat-label>
-                                <mat-select #address class="form-control" formControlName="address"
-                                    [(ngModel)]="register.address">
-                                    <mat-option value="">Choose Address</mat-option>
-                                    <mat-option value="home">Home</mat-option>
-                                    <mat-option value="company">Company</mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="isControlHasError('address', 'required')">
-                                    <strong>Address is required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4" *ngIf="!!address.value">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1</mat-label>
-                                <input matInput class="form-control"
+								<mat-error *ngIf="isControlHasError('tel', 'required')">
+									<strong>Tel is required</strong>
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Country</mat-label>
+								<mat-select #country class="form-control" formControlName="country"
+									[(ngModel)]="register.country" (selectionChange)="countryChange($event)">
+									<mat-option value="">select</mat-option>
+									<mat-option *ngFor="let key of countryJson" [value]="key.country">{{ key.country }}
+									</mat-option>
+								</mat-select>
+								<mat-error *ngIf="isControlHasError('country', 'required')">
+									<strong>Country is required</strong>
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>State</mat-label>
+								<mat-select class="form-control" formControlName="state" [(ngModel)]="register.state">
+									<mat-option value="">select</mat-option>
+									<mat-option *ngFor="let key of states" [value]="key">{{ key }}
+									</mat-option>
+								</mat-select>
+								<mat-error *ngIf="isControlHasError('state', 'required')">
+									<strong>State is required</strong>
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Address</mat-label>
+								<mat-select #address class="form-control" formControlName="address"
+									[(ngModel)]="register.address">
+									<mat-option value="">Choose Address</mat-option>
+									<mat-option value="home">Home</mat-option>
+									<mat-option value="company">Company</mat-option>
+								</mat-select>
+								<mat-error *ngIf="isControlHasError('address', 'required')">
+									<strong>Address is required</strong>
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4" *ngIf="!!address.value">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1</mat-label>
+								<input matInput class="form-control"
                                     placeholder="{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1"
                                     formControlName="address1" [(ngModel)]="register.address1">
-                                <mat-error *ngIf="isControlHasError('address1', 'required')">
-                                    <strong>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1 is
+								<mat-error *ngIf="isControlHasError('address1', 'required')">
+									<strong>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 1 is
                                         required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4" *ngIf="!!address.value">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 2</mat-label>
-                                <input matInput class="form-control "
+								</mat-error>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4" *ngIf="!!address.value">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>{{ address.value === 'home' ? 'Home' : 'Company' }} Address 2</mat-label>
+								<input matInput class="form-control "
                                     placeholder="{{ address.value === 'home' ? 'Home' : 'Company' }} Address 2"
                                     formControlName="address2" [(ngModel)]="register.address2">
                             </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Interests</mat-label>
-                                <mat-chip-list #chipList aria-label="Interest selection">
-                                    <mat-chip *ngFor="let key of interestsArray" selectable="true" removable="true"
-                                        (removed)="remove(key)">
-                                        {{key.name}}
-                                        <mat-icon matChipRemove>cancel</mat-icon>
-                                    </mat-chip>
-                                    <input placeholder="Add Interests" [matChipInputFor]="chipList"
+						</div>
+						<div class="col-lg-4">
+							<mat-form-field appearance="outline" class="w-100">
+								<mat-label>Interests</mat-label>
+								<mat-chip-list #chipList aria-label="Interest selection">
+									<mat-chip *ngFor="let key of interestsArray" selectable="true" removable="true"
+										(removed)="remove(key)">
+										{{key.name}}
+										<mat-icon matChipRemove>cancel</mat-icon>
+									</mat-chip>
+									<input placeholder="Add Interests" [matChipInputFor]="chipList"
                                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                         matChipInputAddOnBlur="true" (matChipInputTokenEnd)="add($event)">
                                 </mat-chip-list>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg-4">
-                            <mat-checkbox formControlName="subscription" [(ngModel)]="register.subscription">
-                                Subscribe to the news letter
-                            </mat-checkbox>
-                        </div>
-                        <div class="col-lg-4" style="float: right; margin-top: 10px;">
-                            <button mat-raised-button color="primary" type="submit">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+							</mat-form-field>
+						</div>
+						<div class="col-lg-4">
+							<mat-checkbox formControlName="subscription" [(ngModel)]="register.subscription">
+								Subscribe to the news letter
+							</mat-checkbox>
+						</div>
+						<div class="col-lg-4" style="float: right; margin-top: 10px;">
+							<button mat-raised-button color="primary" type="submit">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
 
-        </div>
-    </mat-card>
+		</div>
+	</mat-card>
 </div>
